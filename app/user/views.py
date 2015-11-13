@@ -10,11 +10,11 @@ user_views = Blueprint('user', __name__, template_folder='../../templates',
 def home():
     return 'it\'s User Area: %s'
 
-@user_views.route('/login/', methods=['GET', 'POST'])
+@user_views.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST':
         if form.validate_login() == True:
-            return 'Hai %s, Its Page for User Area'%(form.user.username)
+            return 'Hai %s, Its Page for User Area'%(form.user.full_name)
         return render_template('login.html', form=form)
     return render_template('login.html', form=form)

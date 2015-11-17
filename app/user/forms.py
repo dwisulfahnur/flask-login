@@ -4,17 +4,25 @@ from wtforms.validators import DataRequired
 from models import User
 from werkzeug.security import check_password_hash
 class LoginForm(Form):
-    username = StringField('username', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
+    username = StringField('username')
+    password = PasswordField('password')
 
-    def validate_login(self):
+    def validate(self):
         user = User.query.filter_by(username = self.username.data).first()
-        if user:
-            if check_password_hash(user.password, self.password.data ):
-                #return 'Hai %s, Its Page for User Area'%(user.username)
-                self.user = user
-                return True
-            else:
-                self.error = 'Invalid Password'
+        self.user = user
+
+        if not user:
+            self.username.errors = 'Unknown Username'
+            if self.username.data == '':
+                self.username.errors = 'Username can\'t empty'
+            if self.password.data =='':
+                self.password.errors = 'Password can\'t empty'
+            return False
         else:
-            self.error='Unknown Username'
+            if not check_password_hash(user.password, self.password.data):
+                self.password.errors = 'Invalid Password'
+                if self.password.data =='':
+                    self.password.errors = 'Password can\'t empty'
+                    return False
+                return False
+            return True

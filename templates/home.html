@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Administrator Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('.static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('.static', filename='css/signin.css') }}" rel="stylesheet">
+	<script src="{{ url_for('.static', filename='js/ie-emulation-modes-warning.js') }}"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+        <h2><center><strong>Hai {{ user.full_name }}</strong></center></h2>
+        <div>
+            <h3>
+                <center>
+                It's User Area
+                </br><a href='/logout'>Logout</a>
+                </center>
+            </h3>
+
+        </div>
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{url_for('.static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+  </body>
+</html>

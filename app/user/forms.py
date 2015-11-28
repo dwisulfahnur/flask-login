@@ -6,5 +6,4 @@ from models import User
 
 class LoginForm(Form):
     username = StringField('username', [validators.DataRequired('Masukkan Username Anda')])
-    password = PasswordField('password', [validators.DataRequired('Masukkan Password Anda')])
-    remember_me = BooleanField('Remember me', default=False)
+    password = PasswordField('password', [validators.DataRequired('Masukkan Password Anda')])   

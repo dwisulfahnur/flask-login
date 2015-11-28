@@ -30,13 +30,7 @@
         {% for message in form.password.errors %}
         <strong style="color:red">*</strong>{{ message }}
         {% endfor %}
-
-        <div class="checkbox">
-          <label>
-            {{ form.remember_me(type="checkbox") }} Remember me
-          </label>
-        </div>
-
+        <br>
         <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block">
         <br>
         <center>

@@ -15,29 +15,37 @@
     <div class="container">
       <h2><center><strong>Login Administrator</strong></center></h2>
       <form class="form-signin" action="" method="POST">
-        
+        {{ form.hidden_tag() }}
+
         {{ form.username(class="form-control", placeholder="Username") }}
-        {% if form.username.errors %}
-        <strong style="color:red">*</strong>{{ form.username.errors }}
-        {% endif %}
+        {% for message in form.username.errors %}
+        <strong style="color:red">*</strong>{{ message }}
+        {% endfor %}
         </br>
-        
+
 
 
 
         {{ form.password(class="form-control", placeholder="Password") }}
-        {% if form.password.errors %}
-        <strong style="color:red">*</strong>{{ form.password.errors }}
-        {% endif %}
-        </br>
-        
+        {% for message in form.password.errors %}
+        <strong style="color:red">*</strong>{{ message }}
+        {% endfor %}
+
+        <div class="checkbox">
+          <label>
+            {{ form.remember_me(type="checkbox") }} Remember me
+          </label>
+        </div>
+
         <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block">
         <br>
-        <center style="color: green">
-
+        <center>
             {% for message in get_flashed_messages() %}
-            <i>{{ message }}</i>
+            <i style="color: green">{{ message }}</i>
             {% endfor %}
+            {% if error %}
+            <b style="color:red">*</b>{{error}}
+            {% endif %}
         </center>
         </br>
 
